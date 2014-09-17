@@ -28,68 +28,74 @@ var saturday_girl = "Ama";
 var sunday_boy = "Kwesi";
 var sunday_girl = "Akosua";
 
+var gen = " ";
+var bdate = " ";
+var thing = " ";
+
 function sharon ($scope){
 	
-	$scope.day_of_birth = "";
-
+	$scope.birthday = bdate;
+	//$scope.birthday = "01/03/1993";
 	$scope.day = function(){
-		var dayy = $scope.day_of_birth;
+		var dayy = $scope.birthday;
 		return getTheDay(dayy);
+		// console.log(dayy);
 	};
 
-    $scope.gender = " ";
-
+    $scope.gender =  gen;
+    console.log($scope)
+    // $scope.gender = "";
     $scope.akan_name= function(){ 
      var y =$scope;
-    	return first(y.day(),y.gender);
+    	return first(y.bdate,y.gen);
     };
 }
 
-function first(day_of_birth,gender){
+function first(birthday,gender){
 	var akan_name;
-	if(day_of_birth == "Monday" || day_of_birth == "monday"){
+	if(birthday == "Monday" || birthday == "monday"){
 		if(gender == "male" || gender == "Male"){
 			akan_name = monday_boy;
 		}else if(gender == "female"|| gender == "Female"){
 			akan_name = monday_girl;
 		}
 	}
-	if(day_of_birth == "Tuesday" || day_of_birth == "tuesday"){
+	if(birthday == "Tuesday" || birthday == "tuesday"){
 		if(gender == "male" || gender == "Male"){
 			akan_name = tuesday_boy;
 		}else if(gender == "female" || gender == "Female"){
 			akan_name = tuesday_girl;
 		}
 	}
-	if(day_of_birth == "Wednesday" || day_of_birth == "wednesday"){
+	if(birthday == "Wednesday" || birthday == "wednesday"){
 		if(gender == "male" || gender == "Male"){
 			akan_name = wednesday_boy;
 		}else if(gender == "female" || gender == "Female") {
 			akan_name = wednesday_girl;
 		}
 	}
-	if(day_of_birth == "Thursday" || day_of_birth == "thursday" ){
+	if(birthday == "Thursday" || birthday == "thursday" ){
 		if(gender == "male" || gender == "Male"){
 			akan_name = thursday_boy;
 		}else if(gender == "female" || gender == "Female") {
 			akan_name = thursday_girl;
 		}
 	}
-	if(day_of_birth == "Friday" || day_of_birth == "friday"){
+	if(birthday == "Friday" || birthday == "friday"){
 		if(gender == "male" || gender == "Male"){
 			akan_name = friday_boy;
 		}else if(gender == "female" || gender == "Female") {
 			akan_name = friday_girl;
 		}
 	}
-	if(day_of_birth == "Saturday" || day_of_birth == "saturday"){
+	if(birthday == "Saturday" || birthday == "saturday"){
 		if(gender == "male" || gender == "Male"){
 			akan_name = saturday_boy;
 		}else if(gender == "female" || gender == "Female") {
 			akan_name = saturday_girl;
 		}
 	}
-	if(day_of_birth == "Sunday" || day_of_birth == "sunday"){
+	if(birthday == "Sunday" || birthday == "sunday"){
 		if(gender == "male" || gender == "Male"){
 			akan_name = sunday_boy;
 		}else if(gender == "female" || gender == "Female") {
@@ -208,25 +214,37 @@ return myDays[myDate.getDay()]
     console.log('Welcome!  Fetching your information.... ');
     FB.api('me?fields=id,name,birthday,gender', function(response) {
       console.log('Successful login for: ' + response.name);
+      console.log('Successful login for: ' + response.gender);
+      console.log('Successful login for: ' + response.birthday);
+
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+         document.getElementById('gender').innerHTML = response.gender;
+         document.getElementById('birthday').innerHTML = response.birthday;
+         gen = response.gender;
+         bdate = response.birthday;
+        
+         console.log(gen);
+         console.log(bdate);
+         var days = getTheDay(bdate);
+         var t = first(days,gen);
+         console.log(t);
+         thing = t;
+         document.getElementById('aname').innerHTML = thing;
+         //console.log(thing);
+         //$scope.thing = t;
     });
   };
   // document.getElementById('name').innerHTML = response.name ;
 
         // document.getElementById('birthday').innerHTML = response.birthday ;
-      document.getElementById('gender').innerHTML = 
-      'you are ' + response.gender + '.' ;
+     
 
-  FB.api(
-    "/me/",
-    function (response) {
-      if (response && !response.error) {
-        /* handle the result */
-       document.getElementById('birthday').innerHTML = response.birthday ;
-      document.getElementById('gender').innerHTML = response.gender ;
-        // console.log(getElementById(gender));
-        // console.log(getElementById(birthday));
-      }
-    }
-);
+//   FB.api(
+//     "/me/",
+//     function (response) {
+//       if (response && !response.error) {
+//         /* handle the result */
+//             }
+//     }
+// );

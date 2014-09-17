@@ -16,8 +16,14 @@ describe('myApp.view1 module', function() {
 
  describe("name changer", function(){
      it("gives you your ghanaian name", function(){
-     	expect(first("Monday","m")).toEqual("Kojo");
+     	expect(first("Wednesday","male")).toEqual("Kwaku");
      	});
   	});
+
+ // describe("date", function(){
+ //    it("gives you the day of teh week", function(){
+ //      expect(getTheDay("03 Jan 1993")).toEqual("Sunday");
+ //    });
+ // });
 
 });
